@@ -3,6 +3,35 @@
 
 {% block contents %}
 <form method="POST">
+    <div class="wrapper">
+        <div class="form-box login">
+            <h2>Login</h2>
+            <div class="input-box">
+                <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                <input type="email" required placeholder="Email">
+                <label></label>
+            </div>
+            <div class="input-box">
+                <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                <input type="password" required placeholder="Password">
+                <label></label>
+            </div>
+            <div class="remember-forgot">
+                <label><input type="checkbox"> Remember me</label>
+                <a href="#"> Forgot Password?</a>
+            </div>
+            <button type="submit" class="submit-btn">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                Login
+            </button>
+            <div class="login-register">
+                <p>Don't have an account?<a href="/sign-up" class="register-link"> Register now!</a></p>
+            </div>
+        </div>
+    <!--
     <h3 align="center">Login</h3>
     <div class="form-group">
         <label for="email">Email Address</label>
@@ -12,8 +41,7 @@
         <label for="password">Password</label>
         <input type="password" class="form-control" id="password" name="password" placeholder="Enter password"/>
     </div>
-
-    <br />
-    <button type="submit" class="btn btn-primary">Login</button>
+    -->
+    
 </form>
 {% endblock %}
