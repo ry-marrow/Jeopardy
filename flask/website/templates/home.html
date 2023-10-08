@@ -1,0 +1,34 @@
+<!--We can extend the base template here as shown below-->
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+
+{% block contents %}
+<!--<h1> CS Jeopardy </h1>
+
+<p><img src="https://uploads-ssl.webflow.com/5f3c19f18169b62a0d0bf387/60d33beb7754bb65211e29b4_cndak3oa0RRN-4-9oB-ygKRmif28P1LOTEmZgTYg44e5hTvE_UpstqF7sNX49hok9HVEXDcbLzPYyr5oEMPujY9DSXNIKHpW_nRSy-SYa0RSsoxu1gq8_vl0dUNk9X40Z7JStApb.png"></p>
+<p><img src="https://i.chzbgr.com/full/9673052416/h59373B90/person-write-code-run-code-have-bug-have-bug-feature"></p>
+<p><img src="https://i.chzbgr.com/full/9792440832/h8EFFEAAD/person-fc-lets-see-who-caused-this-bug-f"></p>
+<p><img src="https://uploads-ssl.webflow.com/5f3c19f18169b62a0d0bf387/60d33be9ea3ab2738bf56e0d_rO0ikUo-hnDwgg9SOQOCEGZGVmnMAzwWIdeUhraC6yoIUcPu6rOs3p9MojWC-BrpT2rqCTxRNg8WKl8cJYlgpScy91C25V0qV-DOnjRsv_FzYGY_6MrLFzNtCjXcTtN7x6-b4T1b.png"></p>-->
+<h1 align="center"> CS Jeopardy </h1>
+<ul class="list-group list-group-flush" id="notes">
+    {% for note in user.notes %}
+    <li class="list-group-item">{{note.data}}
+        <button type="button" class="close" onClick="deleteNote({{note.id}})">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </li>
+    {% endfor %}
+</ul>
+<form method="POST">
+    <textarea name="note" id="note" class="form-control"></textarea>
+    <br />
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Add Note</button>
+    </div>
+</form>
+
+{% endblock %}
+
+
+
+
