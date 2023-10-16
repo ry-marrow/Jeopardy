@@ -26,7 +26,7 @@ header {
     user-select: none;
 }
 
-.about a {
+.navigation a {
     position: relative;
     font-size: 1.1em;
     color: #ffffff;
@@ -35,7 +35,7 @@ header {
     margin-left: 40px;
 }
 
-.about a::after {
+.navigation a::after {
     content: '';
     position: absolute;
     width: 100%;
@@ -49,7 +49,7 @@ header {
     transition: transform .5s;
 }
 
-.about a:hover::after{
+.navigation a:hover::after{
     transform-origin: left;
     transform: scaleX(1);
 }
