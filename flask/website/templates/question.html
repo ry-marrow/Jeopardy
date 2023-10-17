@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h2 {
+            background-color: #0074c2;
+            color: #fff;
+            padding: 10px;
+        }
+
+        button {
+            display: block;
+            background-color: #0074c2;
+            color: #fff;
+            padding: 10px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #005191;
+        }
+    </style>
+</head>
+<body>
+    <h2>Which programming language is known for its ease of use and readability?</h2>
+    <button>A. Python</button>
+    <button>B. C++</button>
+    <button>C. Java</button>
+    <button>D. Ruby</button>
+    <script>
+        // Add a click event listener to each answer choice
+        const answerChoices = document.querySelectorAll('button');
+        answerChoices.forEach(function(choice) {
+            choice.addEventListener('click', function() {
+                const answer = this.textContent;
+                // Send the answer to the parent window
+                window.parent.postMessage({ answer: answer }, '*');
+            });
+        });
+    </script>
+</body>
+</html>
