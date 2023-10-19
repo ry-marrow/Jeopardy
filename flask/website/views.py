@@ -15,7 +15,7 @@ import json
 views = Blueprint('views', __name__) # defining blueprint
 
 # we also have to register these blueprints in __init__.py 
-@views.route('/', methods=['GET', 'POST'])
+@views.route('/home', methods=['GET', 'POST'])
 @login_required # cannot get to home page unless you are logged in
 def home():
     return render_template("home.html", user=current_user)

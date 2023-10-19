@@ -2,6 +2,41 @@
 {% block title %}Sign Up{% endblock %}
 
 {% block contents %}
+<header>
+    <h2 class="csJeopardy">CS Jeopardy</h2>
+    <nav class="navigation">
+      {% if user.is_authenticated %}
+        <a id="home" href="/">Home</a>
+        <a id="game" href="/jeopardy">Game</a>
+        <a id="logout" href="/logout">Logout</a>
+      {% else %}
+        <a href="#">About</a>
+      {% endif %}
+    </nav> 
+  </header>     
+
+  
+  {% with messages = get_flashed_messages(with_categories=true)%}
+  {% if messages %}
+    {% for category, message in messages %}
+    {% if category == 'error' %}
+    <div class="alert alert-danger alter-dismissable fade show" role="alert">
+      {{message}}
+      <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% else %}
+    <div class="alert alert-success alter-dismissable fade show" role="alert">
+      {{message}}
+      <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endif %}
+    {% endfor %}
+  {% endif %}
+  {% endwith %}
 <form method="POST">
     <div class="bg-wall">
         <div class="wrapper">
@@ -38,7 +73,7 @@
                     Register
                 </button>
                 <div class="login-register">
-                    <p>Already have an account?<a href="/login" class="login-link"> Login here!</a></p>
+                    <p>Already have an account?<a href="/" class="login-link"> Login here!</a></p>
                 </div>
             </div>
         </div>
