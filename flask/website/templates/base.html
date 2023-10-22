@@ -8,22 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!--<link rel="stylesheet" href="website\static\css\style.css" /> -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
-    <!--<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_jeopardy.css') }}" />-->
-    <!--This link CDN (content delivery network) which allows us to load custom CSS and Javascript without downloading it.
-        Defining the CSS classes stuff below-->
-    <!--
-    <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-    crossorigin="anonymous"
-    />
-    <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    crossorigin="anonymous"
-    />
-      -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+   
   <!-- Below is the block template where we can write python code. This allows us to override the title from other files.-->
   <title>{% block title %}Home{% endblock %}</title>
   </head>

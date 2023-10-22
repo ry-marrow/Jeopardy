@@ -16,7 +16,7 @@
 </header>     
 
   
-  {% with messages = get_flashed_messages(with_categories=true)%}
+{% with messages = get_flashed_messages(with_categories=true)%}
   {% if messages %}
     {% for category, message in messages %}
     {% if category == 'error' %}
@@ -36,38 +36,62 @@
     {% endif %}
     {% endfor %}
   {% endif %}
-  {% endwith %}
-<form method="POST">
-    <div class="bg-wall">
-        <div class="wrapper">
-            <div class="form-box login">
-                <h2>Login</h2>
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
-                    <input type="email" id="email" name="email" required placeholder="Email">
-                    <label></label>
-                </div>
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-                    <input type="password" id="password" name="password"  required placeholder="Password">
-                    <label></label>
-                </div>
-                <div class="remember-forgot">
-                    <label><input type="checkbox"> Remember me</label>
-                    <a href="#"> Forgot Password?</a>
-                </div>
-                <button type="submit" class="submit-btn">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    Login
-                </button>
-                <div class="login-register">
-                    <p>Don't have an account?<a href="/sign-up" class="register-link"> Register now!</a></p>
-                </div>
+{% endwith %}
+
+<div class="bg-wall">
+  <div class="cont">
+    <span class="border-line"></span>
+    <form method="POST">
+      <div class="form-box-login">
+        <h2 class="login-title">Login</h2>
+
+        <div class="login-content">
+        
+          <div class="login-box">
+            <i class="ri-user-3-line login-icon"></i>
+            
+            <div class="login-box-input">
+              <!--<span class="icon"><ion-icon name="mail"></ion-icon></span>-->
+              <input type="email" id="login-email" class="login-input" name="email" required placeholder=" ">
+              <label for ="login-email" class="login-label">Email</label>
             </div>
+          </div>
+
+
+          <div class="login-box">
+            <i class="ri-lock-2-line login-icon"></i>
+
+            <div class="login-box-input">
+              <!--<span class="icon"><ion-icon name="lock-closed"></ion-icon></span>-->
+              <input type="password" id="login-pass" class="login-input" name="password"  required placeholder=" ">
+              <label for="login-pass" class="login-label">Password</label>
+              <i class="ri-eye-off-line login-eye" id="login-eye"></i>
+            </div>
+          </div>
         </div>
-    </div>
-</form>
+
+        <div class="login-check">
+          <div class="login-check-group">
+            <input type="checkbox" class="login-check-input" id="login-check">
+            <label for="login-check" class="login-check-label">Remember me</label>
+          </div>
+
+          <a href="#" class="login-forgot">Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="submit-btn">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          Login
+        </button>
+
+        <p class="login-register">Don't have an account?<a href="/sign-up" class="register-link"> Register now!</a></p>
+       
+      </div>
+    </form>
+  </div>
+</div>
+
 {% endblock %}

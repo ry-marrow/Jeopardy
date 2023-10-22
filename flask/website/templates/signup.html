@@ -15,7 +15,7 @@
     </nav> 
   </header>     
 
-  
+<!--
   {% with messages = get_flashed_messages(with_categories=true)%}
   {% if messages %}
     {% for category, message in messages %}
@@ -37,46 +37,78 @@
     {% endfor %}
   {% endif %}
   {% endwith %}
-<form method="POST">
-    <div class="bg-wall">
-        <div class="wrapper">
-            <div class="form-box register">
-                <h2>Registration</h2>
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
-                    <input type="email" id="email" name="email" required placeholder="Email">
-                    <label></label>
-                </div>
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="person"></ion-icon></span>
-                    <input type="text" id="firstName" name="firstName" required placeholder="Name">
-                    <label></label>
-                </div>
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-                    <input type="password" id="password1" name="password1" required placeholder="Enter Password">
-                    <label></label>
-                </div>
-                <div class="input-box">
-                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
-                    <input type="password" id="password2" name="password2 " required placeholder="Confirm Password">
-                    <label></label>
-                </div>
-                <div class="remember-forgot">
-                    <label><input type="checkbox"> I agree to the terms & conditions</label>
-                </div>
-                <button type="submit" class="submit-btn">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    Register
-                </button>
-                <div class="login-register">
-                    <p>Already have an account?<a href="/" class="login-link"> Login here!</a></p>
-                </div>
+  -->
+<div class="bg-wall">
+  <div class="cont">
+    <span class="border-line"></span>
+    <form method="POST">
+      <div class="form-box-register">
+        <h2 class="register-title">Registration</h2>
+
+        <div class="register-content">
+
+          <div class="register-box">
+            <i class="ri-user-3-line login-icon"></i>
+                  
+            <div class="register-box-input">
+              <input type="email" id="register-email" class="register-input" name="email" required placeholder=" ">
+              <label for="register-email" class="register-label">Email</label>
             </div>
+          </div>
+
+
+          <div class="register-box">
+            <i class="ri-user-3-line login-icon"></i>
+                  
+            <div class="register-box-input">
+              <input type="text" id="firstName" class="register-input" name="firstName" required placeholder=" ">
+              <label for="firstName" class="register-label">Name</label>
+            </div>
+          </div>
+          
+
+          <div class="register-box">
+            <i class="ri-lock-2-line login-icon"></i>
+                  
+            <div class="register-box-input">
+              <input type="password" id="password1" class="register-input" name="password1" required placeholder=" ">
+              <label for="password1" class="register-label">Password</label>
+            </div>
+          </div>
+
+
+          <div class="register-box">
+            <i class="ri-lock-2-line login-icon"></i>
+                  
+            <div class="register-box-input">
+              <input type="password" id="password2" class="register-input" name="password2" required placeholder=" ">
+              <label for="password2" class="register-label">Confirm Password</label>
+            </div>
+          </div>      
         </div>
-    </div>
-</form>
+
+
+        <div class="register-check">
+          <div class="register-check-group">
+            <input type="checkbox" class="register-check-input" id="register-check">
+            <label for="register-check" class="register-check-label">Accept terms & conditions</label>
+          </div>
+
+          <!--<a href="#" class="login-forgot">Forgot Password?</a>-->
+        </div>
+
+        <button type="submit" class="submit-btn">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          Register
+        </button>
+              
+        <p class="login-register">Already have an account?<a href="/" class="login-link"> Login here!</a></p>       
+        
+      </div>
+    </form>
+  </div>
+</div>
 {% endblock %}
