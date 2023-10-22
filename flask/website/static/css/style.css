@@ -1,11 +1,11 @@
-/*@import url('https://fonts.googleapis.com/css?family=Poppins')*/
-
+/*@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");*/
+@import url('https://fonts.cdnfonts.com/css/arcade-classic');
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-    
+    /*font-family: "Poppins", sans-serif;*/
+    font-family: 'ArcadeClassic', sans-serif;
   }
 
 header {
@@ -20,15 +20,20 @@ header {
     z-index: 99;
 }
 
+input {
+  border: none;
+  outline: none;
+}
+
 .csJeopardy {
-    font-size: 3em;
+    font-size: 5em;
     color: #ffffff;
     user-select: none;
 }
 
 .navigation a {
     position: relative;
-    font-size: 1.1em;
+    font-size: 2.1em;
     color: #ffffff;
     text-decoration: none;
     font-weight: 500;
@@ -68,165 +73,366 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url('background_lake.jpg') no-repeat;
+  /*background: #ffffff;*/
+  background: url('backgroung_blue-abstract-shape-neon-lines.jpg');
   background-size: cover;
   background-position: center;
 }
-/*
-.btn {
-    width: 130px;
-    height: 50px;
-    background: transparent;
-    border: 2px solid #fff;
-    outline: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1.1em;
-    color: #fff;
-    font-weight: 500;
-    margin-left: 40px;
-    transition: .5s;
+
+/**************              Cont animation           *****************************/
+/* The code below is the animation for the box that surrounds the login in and sign up forms*/
+.cont {
+  position: relative;
+  width: 580px;
+  height: 620px;
+  background: #1c1c1c;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.cont::before {
+  content: '';
+  position: absolute;
+  top:-50%;
+  left: -50%;
+  width: 580px;
+  height: 620px;
+  background: linear-gradient(0deg,transparent,#45f3ff,#45f3ff,#45f3ff);
+  z-index: 1;
+  transform-origin: bottom right;
+  animation: animate 6s linear infinite;
+}
+
+.cont::after {
+  content: '';
+  position: absolute;
+  top:-50%;
+  left: -50%;
+  width: 580px;
+  height: 620px;
+  background: linear-gradient(0deg,transparent,#45f3ff,#45f3ff,#45f3ff);
+  z-index: 1;
+  transform-origin: bottom right;
+  animation: animate 6s linear infinite;
+  animation-delay: -3s;
+}
+
+.border-line {
+  position: absolute;
+  top: 0;
+  inset: 0;
+}
+
+.border-line::before {
+  content: '';
+  position: absolute;
+  top:-50%;
+  left: -50%;
+  width: 580px;
+  height: 620px;
+  background: linear-gradient(0deg,transparent,#ff2770,#ff2770,#ff2770);
+  z-index: 1;
+  transform-origin: bottom right;
+  animation: animate 6s linear infinite;
+  animation-delay: -1.5s;
+}
+
+.border-line::after {
+  content: '';
+  position: absolute;
+  top:-50%;
+  left: -50%;
+  width: 580px;
+  height: 620px;
+  background: linear-gradient(0deg,transparent,#ff2770,#ff2770,#ff2770);
+  z-index: 1;
+  transform-origin: bottom right;
+  animation: animate 6s linear infinite;
+  animation-delay: -4.5s;
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
   }
-*/
-.btn:hover {
-    background: #ffffff;
-    color: #000000;
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
-.wrapper {
-    position: relative;
-    width: 450px;
-    height: 590px;
-    background: transparent;
-    border: 2px solid rgba(255,255,255,.5);
-    border-radius: 20px;
-    backdrop-filter: blur(20px);
-    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /*overflow: hidden;*/
+.cont .form-box-login {
+  position: absolute;
+  inset: 3px;
+  background: #000000;
+  padding: 50px 40px;
+  border-radius: 8px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(8px);
 }
 
-.wrapper .form-box {
-    width: 100%;
-    padding: 40px;
-}
-/*
-.wrapper .form-box.login {
-    display: none;
-}*/
-
-.form-box h2 {
-    font-size: 2em;
-    color:#000000;
-    text-align: center;
+.cont .form-box-register {
+  position: absolute;
+  inset: 3px;
+  background: #000000;
+  padding: 50px 40px;
+  border-radius: 8px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(8px);
 }
 
-.input-box {
-    position: relative;
-    width: 100%;
-    height: 50px;
-    border-bottom: 2px solid #000000;
-    margin: 30px 0;
+/**************              End Cont animation         *****************************/
+
+.login-title {
+  text-align: center;
+  font-size: 2.75rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  color: #fff;
 }
 
-.input-box label {
-    position: absolute;
-    top: 50%;
-    left: 5px;
-    transform: translateY(-50%);
-    font-size: 1em;
-    color: #000000;
-    font-weight: 500;
-    pointer-events: none;
-    
+.login-content, .login-box {
+  display: grid;
 }
 
-/*
-.input-box input:focus~label,
-.input-box input:valid~label {
-    top: -5px;
-}*/
-
-.input-box input {
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    border: none;
-    outline: none;
-    font-size: 1em;
-    color: #000000;
-    font-weight: 600;
-    padding: 0 35px 0 5px;
+.login-content {
+  row-gap: 1.75rem;
+  margin-bottom: 1.5rem;
 }
 
-.input-box input::placeholder {
-    font-weight: bold;
-    color: #000000;
+.login-box {
+  grid-template-columns: max-content 1fr;
+  align-items: center;
+  column-gap: 0.75rem;
+  border-bottom: 2px solid #fff;
 }
 
-.input-box .icon {
-    position: absolute;
-    right: 8px;
-    font-size: 1.2em;
-    color: #000000;
-    line-height: 57px;
+.login-icon, .login-eye {
+  font-size: 2.25rem;
+  color: #fff;
 }
 
-.remember-forgot {
-    font-size: .9em;
-    color: #000000;
-    font-weight: 500;
-    margin: -15px 0 15px;
-    display: flex;
-    justify-content: space-between;
+.login-input {
+  width: 100%;
+  padding-block: 0.8rem;
+  background: none;
+  color: #fff;
+  position: relative;
+  z-index: 1;
 }
 
-.remember-forgot label input {
-    accent-color: #000;
-    margin-right: 3px;
+.login-box-input {
+  position: relative;
 }
 
-.remember-forgot a {
-    color: #000000;
-    text-decoration: none;
+.login-label {
+  position: absolute;
+  left: 0;
+  top: 13px;
+  font-weight: 500;
+  transition: top 0.3s, font-size 0.3s;
+  color: #fff;
 }
 
-.remember-forgot a:hover {
-    text-decoration: underline;
+.login-eye {
+  position: absolute;
+  right: 0;
+  top: 18px;
+  z-index: 10;
+  cursor: pointer;
 }
 
-.submit-btn {
-    width: 100%;
-    height: 45px;
-    background-color: #000000;
-    border: none;
-    outline: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1em;
-    color: #ffffff;
-    font-weight: 500;
+.login-box:nth-child(2) input {
+  padding-right: 1.8rem;
+}
+
+.login-check, .login-check-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.login-check {
+  margin-bottom: 1.5rem;
+}
+.login-check-label, .login-forgot, .login-register {
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+.login-check-group {
+  column-gap: 0.5rem;
+}
+
+.login-check-input {
+  width: 16px;
+  height: 16px;
+}
+
+.login-forgot {
+  color: #fff;
+}
+
+.login-forgot:hover {
+  text-decoration: underline;
 }
 
 .login-register {
-    font-size: .9em;
-    color: #000000;
-    text-align: center;
-    font-weight: 500;
-    margin: 25px 0 10px;
+  text-align: center;
+  font-size: 1rem;
 }
 
-.login-register p a {
-    color: #000000;
-    text-decoration: none;
-    font-weight: 600;
+.login-register a {
+  color: #fff;
+  font-weight: 500;
 }
 
-.login-register p a:hover {
-    text-decoration: underline;
+.login-register a:hover {
+  text-decoration: underline;
 }
+
+.login-input:focus + .login-label {
+  top: -12px;
+  font-size: 1rem;
+}
+
+.login-input:not(:placeholder-shown).login-input:not(:focus) + .login-label {
+  top: -12px;
+  font-size: 0.813rem;
+}
+/*=============== BREAKPOINTS ===============*/
+/* For medium devices */
+/*
+@media screen and (min-width: 576px) {
+  .login {
+    justify-content: center;
+  }
+  .form-box-login {
+    width: 432px;
+    padding: 4rem 3rem 3.5rem;
+    border-radius: 1.5rem;
+  }
+  .login-title {
+    font-size: 2rem;
+  }
+}
+*/
+/******************* REGISTER STYLING *****************/
+.register-title {
+  text-align: center;
+  font-size: 2.75rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+
+.register-content, .register-box {
+  display: grid;
+}
+
+.register-content {
+  row-gap: 0.80rem;
+  margin-bottom: 1.0rem;
+}
+
+.register-box {
+  grid-template-columns: max-content 1fr;
+  align-items: center;
+  column-gap: 0.75rem;
+  border-bottom: 2px solid #fff;
+}
+
+.login-icon, .login-eye {
+  font-size: 1.25rem;
+  color: #fff;
+}
+
+.register-input {
+  width: 100%;
+  padding-block: 0.8rem;
+  background: none;
+  color: #fff;
+  position: relative;
+  z-index: 1;
+}
+
+.register-box-input {
+  position: relative;
+}
+
+.register-label {
+  position: absolute;
+  left: 0;
+  top: 13px;
+  font-weight: 500;
+  transition: top 0.3s, font-size 0.3s;
+  color: #fff;
+}
+
+.login-eye {
+  position: absolute;
+  right: 0;
+  top: 18px;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.register-box:nth-child(2) input {
+  padding-right: 1.8rem;
+}
+
+.register-check, .register-check-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.register-check {
+  margin-bottom: 1.5rem;
+}
+.register-check-label, .register-forgot, .login-register {
+  font-size: 0.813rem;
+  color: #ffffff;
+}
+
+.register-check-group {
+  column-gap: 0.5rem;
+}
+
+.register-check-input {
+  width: 16px;
+  height: 16px;
+}
+
+
+.login-register {
+  text-align: center;
+}
+
+.login-register a {
+  color: #fff;
+  font-weight: 500;
+}
+
+.login-register a:hover {
+  text-decoration: underline;
+}
+
+.register-input:focus + .register-label {
+  top: -12px;
+  font-size: 0.813rem;
+}
+
+.register-input:not(:placeholder-shown).register-input:not(:focus) + .register-label {
+  top: -12px;
+  font-size: 0.813rem;
+}
+
+/*=============== END REGISTER STYLING ===============*/
+
 /*************************************************************************/
 /****************** Jeopardy HTML*********************/
 
@@ -344,19 +550,22 @@ body {
   margin-top: 20px;
 }
 /*************************************************************************/
-
+/* This is the submit button DO NOT CHANGE */
 .submit-btn {
     position: relative;
     display: inline-block;
     padding: 10px 20px;
     color: #03e9f4;
-    font-size: 16px;
+    font-size: 1rem;
     text-decoration: none;
     text-transform: uppercase;
     overflow: hidden;
     transition: .5s;
     margin-top: 40px;
-    letter-spacing: 4px
+    letter-spacing: 4px;
+    background-color: #000000;
+    border: none;
+    outline: none;
   }
   
 .submit-btn:hover {
@@ -447,3 +656,12 @@ body {
       bottom: 100%;
     }
   }
+/*************************************************************************/
+
+
+
+
+
+
+
+
