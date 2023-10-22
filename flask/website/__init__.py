@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask,render_template
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager  # will help manage all the loggin in related things 
@@ -21,7 +21,7 @@ def create_app():
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
     
-    from .models import User, Note
+    from .models import User, Note, questions_answers, game_data
     
     with app.app_context():
         db.create_all()
