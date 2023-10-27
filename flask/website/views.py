@@ -23,7 +23,7 @@ def home():
 @views.route('/jeopardy', methods=['GET', 'POST'])
 @login_required
 def jeopardy():
-    return render_template("jeopardy.html", user=current_user)
+    return render_template("gameboard.html", user=current_user)
 
 @views.route('/question/<int:category_id>/<int:point_value>/options')
 def question_options(category_id, point_value):
