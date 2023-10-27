@@ -12,6 +12,7 @@ from .models import User
 from . import db
 import json
 
+
 views = Blueprint('views', __name__) # defining blueprint
 
 # we also have to register these blueprints in __init__.py 
