@@ -3,15 +3,32 @@ from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
+import requests
 
 auth = Blueprint('auth', __name__)
 
-# login, logout, signup routes
+RECAPTCHA_SECRET_KEY = "6LeNFdUoAAAAAAmEGJ3TWUcEYHYEKkpwyHfNEHDh"
+
 @auth.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
+
+        # Validate reCAPTCHA
+        recaptcha_response = request.form.get('g-recaptcha-response')
+
+        data = {
+            'secret': RECAPTCHA_SECRET_KEY,
+            'response': recaptcha_response
+        }
+
+        response = requests.post('https://www.google.com/recaptcha/api/siteverify', data=data)
+        result = response.json()
+
+        if not result['success']:
+            flash('reCAPTCHA verification failed. Please try again.', category='error')
+            return redirect(url_for('auth.login'))
         
         user = User.query.filter_by(email=email).first()
         if user:
@@ -27,7 +44,7 @@ def login():
     return render_template("login.html", user=current_user)
 
 @auth.route('/logout')
-@login_required # user cannot access this page unless they are logged in 
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('auth.login'))
@@ -46,22 +63,21 @@ def signup():
         elif len(email) < 4:
             flash('Email must be greater than 3 characters.', category='error')
         elif len(first_name) < 2:
-            flash('First name must be greater than 1 characters.', category='error')
+            flash('First name must be greater than 1 character.', category='error')
         elif password1 != password2:
             flash('Passwords don\'t match.', category='error')
         elif len(password1) < 7:
             flash('Password must be at least 7 characters.', category='error')
         else:
-            # Creating new user
             new_user = User(email=email, first_name=first_name, password=generate_password_hash(
                 password1, method='sha256'))
             db.session.add(new_user)
             db.session.commit()
-            login_user(new_user, remember=True)
             flash('Account created!', category='success')
             return redirect(url_for('views.home'))
             
     return render_template("signup.html", user=current_user)
+
 
 # Special templating language called JINJA which allows us to write a little bit of python inside your
 # HTML documents. Also that we can pass multiple variables or values through them. 

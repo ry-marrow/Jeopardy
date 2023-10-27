@@ -7,9 +7,11 @@ from flask_login import LoginManager  # will help manage all the loggin in relat
 db = SQLAlchemy()
 DB_NAME = "database.db"
 
+
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = 'dbfasdfbghlasdlfa' # When in production you would not want to share this with anyone
+    app.config['SECRET_KEY'] = '6LetRNQoAAAAALJACuSqiZF5XmUBHnenNtyc8O9-' # When in production you would not want to share this with anyone
+    app.config['SITE_KEY'] = '6LetRNQoAAAAAHH5mTVv3tvIJuyTN1h_jwvf1HoG'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}' # this is where the database is stored. 
     # initializing the database by giving it out flask apps
     db.init_app(app)
@@ -39,9 +41,3 @@ def create_app():
         return User.query.get(int(id))
     
     return app
-
-# def create_database(app): # checks if database exists and if it doesn't then it would create it 
-#     if not path.exists('website/' + DB_NAME):
-#         with app.app_context():
-#             db.create_all()
-#         print('Created Database!')
