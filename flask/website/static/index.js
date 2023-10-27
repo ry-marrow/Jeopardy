@@ -7,6 +7,12 @@
 //     });
 // }
 
+function closeAlert() {
+    var alert = document.querySelector(".alert");
+    alert.style.display = "none";
+}
+  
+
 // Define a variable to track the dollar total
 let dollarTotal = 0;
 

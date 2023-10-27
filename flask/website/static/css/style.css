@@ -78,6 +78,34 @@ body {
   background-size: cover;
   background-position: center;
 }
+/**************              Alert stuff           *****************************/
+/* The code below is the animation for the box that surrounds the login in and sign up forms*/
+
+.alert {
+  padding: 0.2rem 1rem;
+  text-align: center;
+  color: #FFF;
+}
+
+
+
+.alert .close-btn {
+  float:right;
+  position: relative;
+  border: none;
+  background-color: #cdfa02;
+}
+
+.alert-error {
+  background-color: #ef1c1c;
+  border-color: #EF5350;
+}
+.alert.alert-success {
+  background-color: #64DD17;
+  border-color: #64DD17;
+}
+
+
 
 /**************              Cont animation           *****************************/
 /* The code below is the animation for the box that surrounds the login in and sign up forms*/
