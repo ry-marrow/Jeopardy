@@ -1,11 +1,12 @@
 /*@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");*/
-@import url('https://fonts.cdnfonts.com/css/arcade-classic');
+/* @import url('https://fonts.cdnfonts.com/css/arcade-classic'); */
+@import url('https://fonts.cdnfonts.com/css/arcade');
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     /*font-family: "Poppins", sans-serif;*/
-    font-family: 'ArcadeClassic', sans-serif;
+    font-family: 'Arcade Normal', sans-serif;
   }
 
 header {
@@ -26,14 +27,14 @@ input {
 }
 
 .csJeopardy {
-    font-size: 5em;
+    font-size: 3em;
     color: #ffffff;
     user-select: none;
 }
 
 .navigation a {
     position: relative;
-    font-size: 2.1em;
+    font-size: 1.1em;
     color: #ffffff;
     text-decoration: none;
     font-weight: 500;
@@ -239,7 +240,7 @@ body {
 }
 
 .login-icon, .login-eye {
-  font-size: 2.25rem;
+  font-size: 1.25rem;
   color: #fff;
 }
 
@@ -287,7 +288,7 @@ body {
   margin-bottom: 1.5rem;
 }
 .login-check-label, .login-forgot, .login-register {
-  font-size: 1rem;
+  font-size: 0.8rem;
   color: #ffffff;
 }
 
@@ -310,12 +311,12 @@ body {
 
 .login-register {
   text-align: center;
-  font-size: 1rem;
+  font-size: 20px;
 }
 
 .login-register a {
   color: #fff;
-  font-weight: 500;
+  font-weight: 200;
 }
 
 .login-register a:hover {
@@ -324,12 +325,19 @@ body {
 
 .login-input:focus + .login-label {
   top: -12px;
-  font-size: 1rem;
+  font-size: 0.813rem;
 }
 
 .login-input:not(:placeholder-shown).login-input:not(:focus) + .login-label {
   top: -12px;
   font-size: 0.813rem;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-text-fill-color: #ffffff !important;
+  transition: background-color 5000s ease-in-out 0s;
 }
 /*=============== BREAKPOINTS ===============*/
 /* For medium devices */
@@ -351,7 +359,7 @@ body {
 /******************* REGISTER STYLING *****************/
 .register-title {
   text-align: center;
-  font-size: 2.75rem;
+  font-size: 1.75rem;
   font-weight: 500;
   margin-bottom: 2rem;
   color: #fff;
@@ -422,7 +430,7 @@ body {
   margin-bottom: 1.5rem;
 }
 .register-check-label, .register-forgot, .login-register {
-  font-size: 0.813rem;
+  font-size: 0.8rem;
   color: #ffffff;
 }
 
@@ -464,35 +472,54 @@ body {
 /*************************************************************************/
 /****************** Jeopardy HTML*********************/
 
-.gameboard {
+/* .gameboard {
   font-family: Arial, sans-serif;
-  background-color: #ecf0f1; /* Light gray background */
+  background-color: #000000; 
   text-align: center;
   padding: 20px;
-}
+  align-items: center;
+  background-size: cover;
+} */
 
-
-.game-cont h5 {
+.gameboard {
   margin: 0;
-  padding: 2em;
+  padding: 10px;
+  /* display: flex; */
+  /* justify-content: center;*/
+  /* align-items: center; */
+  text-align: center;
+  height: 100vh;
+  background: #000000;
+  /* background: url('backgroung_blue-abstract-shape-neon-lines.jpg'); */
+  background-size: cover;
+  background-position: center;
 }
 
+.gameboard h5 {
+  margin: 0;
+  padding: 1em;
+  color: #FFF;
+}
+#total-display {
+  color: #FFF;
+}
 .game-nav {
   background-color: #3498db; /* Blue header */
-  padding: 10px;
+  padding: 0px;
   margin-bottom: 20px;
   text-align: center;
 }
 .game-nav h1 {
-  color: #000000;
+  color: #ffffff;
   display: inline-block;
 }
 
 
 .game-nav a {
   position: relative;
+  margin-right: 20px;
   font-size: 1.1em;
-  color: #000000;
+  color: #ffffff;
   text-decoration: none;
   font-weight: 500;
   margin-left: 40px;
@@ -506,7 +533,7 @@ body {
   height: 3px;
   left: 0;
   bottom: -6px;
-  background: #000000;
+  background: #ffffff;
   border-radius: 5px;
   transform-origin: right;
   transform: scaleX(0);
@@ -519,37 +546,38 @@ body {
 }
 
 
-.question-table table {
-  border-collapse: collapse;
-  width: 80%;
+.question-table {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  /* grid-template-columns: repeat(6, 1fr); */
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(6, 1fr);
+  
+  row-gap: 25px;
+  column-gap: 10px;
+  /* max-width: 1000px; */
+  height: 80%;
   margin: 0 auto;
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 20px;
 }
 
-.question-table th {
-  background-color: #34495e; /* Dark blue heading background */
+.question-table button {
+  background-color: #34a1db;
   color: #fff;
-  padding: 10px;
-  text-align: center;
+  border: none;
+  height: 100px;
+  width: 275px;
+  border-radius: 10px;
+  cursor: pointer;
+  /* font-size: 1rem; */
+}
+button .category {
+  font-size: 1em;
 }
 
-/* Style the table cells */
-.question-table td {
-  padding: 10px;
-  text-align: center;
-}
-
-/* Style the links for point values */
-.question-table a {
-  text-decoration: none;
-  color: #e67e22; /* Orange point value color */
-  font-weight: bold;
-  transition: color 0.3s;
-}
-
-.question-table a:hover {
-  color: #e74c3c; /* Red point value color on hover */
+button:hover {
+  background-color: #2980b9;
 }
 
 /* Style for the question popup */
@@ -560,7 +588,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(255, 255, 255, 0.8);
   z-index: 1000;
 }
 
@@ -589,7 +617,6 @@ body {
     text-transform: uppercase;
     overflow: hidden;
     transition: .5s;
-    margin-top: 40px;
     letter-spacing: 4px;
     background-color: #000000;
     border: none;

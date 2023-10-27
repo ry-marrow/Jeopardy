@@ -1,0 +1,37 @@
+/* @import url('https://fonts.cdnfonts.com/css/arcade-classic'); */
+@import url('https://fonts.cdnfonts.com/css/arcade');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /*font-family: "Poppins", sans-serif;*/
+    font-family: 'Arcade Normal', sans-serif;
+  }
+body {
+    background-color: #f7f7f7;
+    margin: 0;
+    padding: 20px;
+
+}
+
+h2 {
+    background-color: #0074c2;
+    color: #fff;
+    padding: 10px;
+}
+
+button {
+    display: block;
+    background-color: #0074c2;
+    color: #fff;
+    padding: 10px;
+    margin: 10px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #005191;
+}
