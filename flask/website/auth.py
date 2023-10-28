@@ -78,6 +78,11 @@ def signup():
             
     return render_template("signup.html", user=current_user)
 
+@auth.route('/admin')
+@login_required
+def admin_page():
+    return render_template('admin.html')
 
-# Special templating language called JINJA which allows us to write a little bit of python inside your
+
+# Special templating language called JINJA which allows us to write a little bit of python inside our
 # HTML documents. Also that we can pass multiple variables or values through them. 
