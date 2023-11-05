@@ -15,6 +15,7 @@ from sqlalchemy.sql import func
 class User(db.Model, UserMixin):
     # Defining the Schema
     id = db.Column(db.Integer, primary_key=True)
+    is_admin = db.Column(db.Boolean, default=True)
     createDate = db.Column(db.DateTime, server_default=func.now())
     deleted = db.Column(db.Boolean, default=0)
     email = db.Column(db.String(150), unique=True)

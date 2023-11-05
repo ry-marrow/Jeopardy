@@ -83,6 +83,5 @@ def signup():
 def admin_page():
     return render_template('admin.html')
 
-
 # Special templating language called JINJA which allows us to write a little bit of python inside our
 # HTML documents. Also that we can pass multiple variables or values through them. 
