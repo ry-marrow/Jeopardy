@@ -42,13 +42,13 @@ def upload_csv():
 
     if 'csvFile' not in request.files:
         flash('No file part', category='error')
-        return redirect(url_for('views.admin_page'))
+        return redirect(url_for('auth.admin_page'))
 
     file = request.files['csvFile']
 
     if file.filename == '':
         flash('No selected file', category='error')
-        return redirect(url_for('views.admin_page'))
+        return redirect(url_for('auth.admin_page'))
 
     if file:
         #result of function in another file, imported at top
@@ -58,4 +58,4 @@ def upload_csv():
         else:
             flash('Failed to process the uploaded CSV file', category='error')
 
-    return redirect(url_for('views.admin_page'))
+    return redirect(url_for('auth.admin_page'))

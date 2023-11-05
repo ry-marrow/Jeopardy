@@ -1,7 +1,8 @@
-from flask import Flask,render_template
+from flask import Flask, render_template 
+from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from os import path
-from flask_login import LoginManager  # will help manage all the loggin in related things 
+from flask_login import LoginManager  # will help manage all the login related things 
 
 # creating the database:
 db = SQLAlchemy()
