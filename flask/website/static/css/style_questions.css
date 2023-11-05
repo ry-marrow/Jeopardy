@@ -12,7 +12,8 @@ body {
     background-color: #f7f7f7;
     margin: 0;
     padding: 20px;
-
+    width: 580px;
+    height: 620px
 }
 
 h2 {

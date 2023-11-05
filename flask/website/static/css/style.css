@@ -481,6 +481,13 @@ input:-webkit-autofill:active {
   background-size: cover;
 } */
 
+.admin-page {
+  color: #fff;
+}
+.upload {
+  color: #fff;
+}
+
 .gameboard {
   margin: 0;
   padding: 10px;
