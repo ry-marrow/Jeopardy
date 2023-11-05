@@ -12,15 +12,15 @@
         <button>C. Java</button>
         <button>D. Ruby</button>
         <script>
-            // Add a click event listener to each answer choice
-            const answerChoices = document.querySelectorAll('button');
-            answerChoices.forEach(function(choice) {
-                choice.addEventListener('click', function() {
-                    const answer = this.textContent;
-                    // Send the answer to the parent window
-                    window.parent.postMessage({ answer: answer }, '*');
-                });
+        // Add a click event listener to each answer choice
+        const answerChoices = document.querySelectorAll('button');
+        answerChoices.forEach(function(choice) {
+            choice.addEventListener('click', function() {
+                const answer = this.textContent;
+                // Send the answer to the parent window
+                window.parent.postMessage({ answer: answer }, '*');
             });
+        });
         </script>
     </body>
 </html>

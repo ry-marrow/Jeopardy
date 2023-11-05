@@ -17,8 +17,13 @@
     </nav> 
 </header>
 <div class="bg-wall">
-    <h1 align="center"> CS Jeopardy </h1>
-    <h2 align="center">NEED TO MAKE THIS INTO THE DASHBOARD </h2>
+    <!-- <h1 align="center"> CS Jeopardy </h1>
+    <h2 align="center">NEED TO MAKE THIS INTO THE DASHBOARD </h2> -->
+    <h1 class="admin-page">Admin Page</h1>
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+      <input type="file" class="upload" name="csvFile" accept=".csv" />
+      <button type="submit">Upload CSV</button>
+    </form>
 </div>
 {% endblock %}
 
