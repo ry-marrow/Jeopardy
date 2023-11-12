@@ -1,14 +1,14 @@
 {
     "builds":[
         {
-            "src":"flask/main.py",
+            "src":"./main.py",
             "user":"@vercel/python"
         }
     ],
     "routes":[
         {
             "src":"/(.*)",
-            "dest":"flask/main.py"
+            "dest":"/"
         }
     ]
 }
