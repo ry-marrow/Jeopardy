@@ -18,13 +18,13 @@ def create_app():
     db.init_app(app)
     
     # importing the blueprints 
-    from .views import views
-    from .auth import auth
+    from views import views
+    from auth import auth
     # registering the blueprints
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
     
-    from .models import User, questions_answers, game_data
+    from models import User, questions_answers, game_data
     
     with app.app_context():
         db.create_all()

@@ -1,14 +1,15 @@
 {
+    "version": 2,
     "builds":[
         {
-            "src":"flask/main.py",
-            "user":"@vercel/python"
+            "src":"/api/main.py",
+            "use":"@vercel/python"
         }
     ],
     "routes":[
         {
             "src":"/(.*)",
-            "dest":"flask/main.py"
+            "dest":"/api/main.py"
         }
     ]
 }
