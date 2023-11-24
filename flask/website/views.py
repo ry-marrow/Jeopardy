@@ -8,11 +8,12 @@
 
 from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for
 from flask_login import login_required, current_user
-from .models import User
+from .models import User, questions_answers
 from . import db
 import json
 import csv
 from .csv_parser import process_uploaded_csv
+import logging
 
 
 views = Blueprint('views', __name__) # defining blueprint
@@ -26,11 +27,63 @@ def home():
 @views.route('/jeopardy', methods=['GET', 'POST'])
 @login_required
 def jeopardy():
-    return render_template("gameboard.html", user=current_user)
+    # Fetch categories from the database
+    categories = questions_answers.query.with_entities(questions_answers.category).distinct().limit(6).all()
+    category_names = [category[0] for category in categories]
+
+    # Fetch questions from the database
+    questions = questions_answers.query.all()
+    return render_template("gameboard.html", user=current_user, categories=category_names, questions=questions)
+
 
 @views.route('/question/<int:category_id>/<int:point_value>/options')
 def question_options(category_id, point_value):
-    return render_template('question.html')
+    # Fetch the question data from the database based on category_id and point_value
+    question_data = questions_answers.query.filter_by(category=category_id, difficulty=point_value).first()
+
+    if question_data:
+        # Extract necessary information from the question data
+        question_text = question_data.questionText
+        answer_choices = [question_data.answerText]  # Put the correct answer as the first choice
+        # You may want to add more logic to get multiple answer choices from the database
+
+        # Pass the data to the template
+        return render_template('question.html', question_text=question_text, answer_choices=answer_choices)
+    else:
+        # Handle the case where no question is found
+        return render_template('question.html', question_text="No question found", answer_choices=[])
+
+@views.route('/get_question/<category>/<int:value>', methods=['GET'])
+def get_question(category, value):
+    try:
+        logging.info(f"Received request for question - Category: {category}, Value: {value}")
+
+        # Assuming frontend difficulty levels are 100 to 500, and backend levels are 1 to 5
+        backend_difficulty = int(value) // 100  # Convert frontend level to backend level
+
+        question_data = questions_answers.query.filter_by(category=category, difficulty=backend_difficulty).first()
+        logging.info(f"Question Data: {question_data}")
+
+        if question_data:
+            # Extract necessary information from the question data
+            question_text = question_data.questionText
+            answer_choices = [question_data.answerText]
+
+            # Log the retrieved question data
+            logging.info(f"Retrieved question data - Category: {category}, Value: {value}")
+            logging.info(f"Question Text: {question_text}, Answer Choices: {answer_choices}")
+
+            # Send the data as JSON
+            return {'question_text': question_text, 'answer_choices': answer_choices}
+        else:
+            # Handle the case where no question is found
+            logging.warning(f"No question found for - Category: {category}, Value: {value}")
+            return jsonify({'question_text': "No question found", 'answer_choices': []})
+    except Exception as e:
+        # Log any exceptions that occur
+        logging.error(f"Error in get_question route: {str(e)}")
+        return jsonify({'question_text': "Error fetching question", 'answer_choices': []})
+
 
 @views.route('/upload', methods=['POST'])
 @login_required

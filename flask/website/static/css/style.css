@@ -570,17 +570,13 @@ input:-webkit-autofill:active {
 }
 
 .question-table button {
-  background-color: #34a1db;
+  background-color: #3498db;
   color: #fff;
   border: none;
-  height: 100px;
-  width: 275px;
-  border-radius: 10px;
+  padding: 10px 20px;
+  border-radius: 5px;
   cursor: pointer;
-  /* font-size: 1rem; */
-}
-button .category {
-  font-size: 1em;
+  font-size: 1rem;
 }
 
 button:hover {
@@ -719,7 +715,45 @@ button:hover {
     }
   }
 /*************************************************************************/
+.categories {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
 
+.categories button {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.categories button:hover {
+  background-color: #2980b9;
+}
+
+.modal-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  z-index: 2;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* semi-transparent black background */
+  z-index: 1;
+}
 
 
 
