@@ -78,6 +78,10 @@ def signup():
             
     return render_template("signup.html", user=current_user)
 
+@auth.route('/faceid')
+def faceid():
+    return render_template("faceid.html", user=current_user)
+
 @auth.route('/admin')
 @login_required
 def admin_page():
