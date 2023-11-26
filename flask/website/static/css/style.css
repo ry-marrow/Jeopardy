@@ -491,22 +491,18 @@ input:-webkit-autofill:active {
 .gameboard {
   margin: 0;
   padding: 10px;
-  /* display: flex; */
-  /* justify-content: center;*/
-  /* align-items: center; */
   text-align: center;
   height: 100vh;
   background: #000000;
-  /* background: url('backgroung_blue-abstract-shape-neon-lines.jpg'); */
   background-size: cover;
   background-position: center;
 }
 
-.gameboard h5 {
+/* .gameboard h5 {
   margin: 0;
   padding: 1em;
   color: #FFF;
-}
+} */
 #total-display {
   color: #FFF;
 }
@@ -587,6 +583,35 @@ button:hover {
   background-color: #2980b9;
 }
 
+.gamescore {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.player_box {
+  display: block;
+  padding: 10px;
+  padding-left: 50px;
+  padding-right: 50px;
+  border-style: double;
+  border-width: 5px;
+  border-color: white;
+  /* font-size: 1rem; */
+  background-color: #000000;
+  border-radius: 10px;
+}
+
+.player_name {
+  display: block;
+  color: #FFF;
+  font-size: 1.5rem;
+}
+
+.player_total {
+  display: block;
+  color: #FFF;
+}
+
 /* Style for the question popup */
 .question-popup {
   display: none;
@@ -601,17 +626,18 @@ button:hover {
 
 /* Style for the iframe */
 #question-iframe {
-  width: 80%;
-  height: 80%;
-  margin: 10% auto;
+  width: 90%;
+  height: 90%;
+  margin: 5% auto;
   display: block;
+  border-radius: 25px;
 }
 
 /* Style for the question options */
-.question-options {
+/* .question-options {
   text-align: center;
   margin-top: 20px;
-}
+} */
 /*************************************************************************/
 /* This is the submit button DO NOT CHANGE */
 .submit-btn {

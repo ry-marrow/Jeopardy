@@ -6,11 +6,20 @@
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_questions.css') }}" />
     </head>
     <body>
-        <h2>Which programming language is known for its ease of use and readability?</h2>
-        <button>A. Python</button>
-        <button>B. C++</button>
-        <button>C. Java</button>
-        <button>D. Ruby</button>
+        <div class="question-cont">
+            <div class="question-header">
+                <h2>Which programming language is known for its ease of use and readability?</h2>
+            </div>
+            <div class="timer-container">
+                <div class="timer-bar"></div>
+            </div>
+            <div class="options">
+                <button id="opt-A">A. Python</button>
+                <button id="opt-B">B. C++</button>
+                <button id="opt-C">C. Java</button>
+                <button id="opt-D">D. Ruby</button>
+            </div>
+        </div>
         <script>
         // Add a click event listener to each answer choice
         const answerChoices = document.querySelectorAll('button');
