@@ -2,3 +2,5 @@ flask
 Flask-SQLAlchemy
 flask-login
 flask-migrate
+face-recognition
+opencv-python 
