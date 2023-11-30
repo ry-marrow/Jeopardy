@@ -48,7 +48,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Create an HTML document with the question and answer choices
                 const modalContent = `
                     <div class="question-container">
-                        <h2>Jeopardy Question</h2>
                         <div id="question-text" class="question-text">${data.question_text}</div>
                         <ul id="answer-choices" class="answer-choices">
                             ${data.answer_choices.map(choice => `<li>${choice}</li>`).join('')}
