@@ -1,18 +1,11 @@
 {% extends "base.html" %} {% block title %}Question{% endblock %} {% block
 contents %}
-<head>
-    <style>
-        .question-container {
-          display: block; /* Ensure the container is visible */
-        }
-      </style>
-</head>
 
 <div class="question-container">
-  <h2>Jeopardy Question</h2>
-
   <div id="question-text" class="question-text"></div>
-
+  <div class="timer-container">
+    <div class="timer-bar"></div>
+  </div>
   <ul id="answer-choices" class="answer-choices">
     <!-- Answer choices will be added dynamically using JavaScript -->
   </ul>
