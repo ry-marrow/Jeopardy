@@ -3,7 +3,6 @@ from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager  # will help manage all the loggin in related things 
 from flask_migrate import Migrate
-import logging
 
 # creating the database:
 db = SQLAlchemy()
@@ -14,25 +13,16 @@ def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = '6LetRNQoAAAAALJACuSqiZF5XmUBHnenNtyc8O9-' # When in production you would not want to share this with anyone
     app.config['SITE_KEY'] = '6LetRNQoAAAAAHH5mTVv3tvIJuyTN1h_jwvf1HoG'
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}' # this is where the database is stored.
-    app.logger.setLevel(logging.INFO)
-
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}' # this is where the database is stored. 
     # initializing the database by giving it out flask apps
     db.init_app(app)
     
     # importing the blueprints 
-<<<<<<< HEAD:api/__init__.py
     from views import views
     from auth import auth
-=======
-    from .views import views
-    from .auth import auth
-    from .facial_recognition import facial_recognition
->>>>>>> c2f99f67bac4cdfe5f187e52d127e317816995e7:flask/website/__init__.py
     # registering the blueprints
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
-    app.register_blueprint(facial_recognition, url_prefix='/')
     
     from models import User, questions_answers, game_data
     

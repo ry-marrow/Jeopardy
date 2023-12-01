@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_questions.css') }}" />
+    </head>
+    <body>
+        <h2>Which programming language is known for its ease of use and readability?</h2>
+        <button>A. Python</button>
+        <button>B. C++</button>
+        <button>C. Java</button>
+        <button>D. Ruby</button>
+        <script>
+        // Add a click event listener to each answer choice
+        const answerChoices = document.querySelectorAll('button');
+        answerChoices.forEach(function(choice) {
+            choice.addEventListener('click', function() {
+                const answer = this.textContent;
+                // Send the answer to the parent window
+                window.parent.postMessage({ answer: answer }, '*');
+            });
+        });
+        </script>
+    </body>
+</html>
