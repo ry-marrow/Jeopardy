@@ -1,26 +1,44 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style_questions.css') }}" />
-    </head>
-    <body>
-        <h2>Which programming language is known for its ease of use and readability?</h2>
-        <button>A. Python</button>
-        <button>B. C++</button>
-        <button>C. Java</button>
-        <button>D. Ruby</button>
-        <script>
-        // Add a click event listener to each answer choice
-        const answerChoices = document.querySelectorAll('button');
-        answerChoices.forEach(function(choice) {
-            choice.addEventListener('click', function() {
-                const answer = this.textContent;
-                // Send the answer to the parent window
-                window.parent.postMessage({ answer: answer }, '*');
-            });
-        });
-        </script>
-    </body>
-</html>
+{% extends "base.html" %} {% block title %}Question{% endblock %} {% block
+contents %}
+
+<div class="question-container">
+  <div id="question-text" class="question-text"></div>
+  <div class="timer-container">
+    <div class="timer-bar"></div>
+  </div>
+  <ul id="answer-choices" class="answer-choices">
+    <!-- Answer choices will be added dynamically using JavaScript -->
+  </ul>
+
+  <button onclick="closeQuestionPopup()">Close</button>
+</div>
+
+<script>
+  function displayQuestion(data) {
+    console.log("displayQuestion called with data:", data);
+
+    const questionTextElement = document.getElementById("question-text");
+    const answerChoicesElement = document.getElementById("answer-choices");
+
+    // Check if the data properties exist
+    if ("question_text" in data && "answer_choices" in data) {
+      // Update the question text
+      questionTextElement.textContent = data.question_text;
+
+      // Update the answer choices
+      answerChoicesElement.innerHTML = data.answer_choices
+        .map((choice) => `<li>${choice}</li>`)
+        .join("");
+    } else {
+      console.error("Invalid data format:", data);
+    }
+  }
+
+  function closeQuestionPopup() {
+    // Close the question popup as needed
+    const questionPopup = document.getElementById("question-popup");
+    questionPopup.style.display = "none";
+  }
+</script>
+
+{% endblock %}

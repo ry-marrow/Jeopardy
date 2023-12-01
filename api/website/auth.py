@@ -1,11 +1,15 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for
+from flask import Blueprint, render_template, request, flash, redirect, url_for, Response
 from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
 import requests
+# import cv2
+# import numpy as np
+
 
 auth = Blueprint('auth', __name__)
+#camera = cv2.VideoCapture(0)
 
 RECAPTCHA_SECRET_KEY = "6LeNFdUoAAAAAAmEGJ3TWUcEYHYEKkpwyHfNEHDh"
 
@@ -78,6 +82,38 @@ def signup():
             
     return render_template("signup.html", user=current_user)
 
+####################################################################################################
+# def generate_frames():
+#     while True:
+        
+#         ## Reading the camera frames
+#         success,frame = camera.read()
+#         if not success:
+#             flash("Camera not detected!")
+#         else:
+            
+            
+#             ## This will encode an image into a memory buffer
+#             ret, buffer = cv2.imencode('.jpg', frame)
+#             ## Converting buffer back to bytes
+#             frame = buffer.tobytes()
+            
+#         yield(b'--frame\r\n'
+#               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+        
+    
+
+
+# @auth.route('/faceid')
+# def faceid():
+#     return render_template("faceid.html", user=current_user)
+
+# @auth.route('/video', methods=['GET', 'POST'])
+# def video():
+#     return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+
+
+####################################################################################################
 @auth.route('/admin')
 @login_required
 def admin_page():
