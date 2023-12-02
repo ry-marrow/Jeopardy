@@ -32,6 +32,7 @@ function closeQuestionPopup() {
 
 function submitAnswer() {
     // Handle answer submission logic here
+    console.log("Answer Submitted")
     // You can modify this function to check the selected answer and update points accordingly
     // After handling the answer, close the modal
     closeQuestionPopup();
@@ -48,13 +49,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 // Create an HTML document with the question and answer choices
                 const modalContent = `
                     <div class="question-container">
-                        <h2>Jeopardy Question</h2>
                         <div id="question-text" class="question-text">${data.question_text}</div>
-                        <ul id="answer-choices" class="answer-choices">
-                            ${data.answer_choices.map(choice => `<li>${choice}</li>`).join('')}
-                        </ul>
-                        <button onclick="submitAnswer()">Submit Answer</button>
-                        <button onclick="closeQuestionPopup()">Close</button>
+                        <div id="answer-choices" class="answer-choices">
+                            ${data.answer_choices.map(choice => `<button class="options" onclick="submitAnswer()">${choice}</button>`).join('')}
+                        </div>
+                        
+                        
                     </div>
                 `;
 

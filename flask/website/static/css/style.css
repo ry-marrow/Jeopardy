@@ -737,8 +737,45 @@ button:hover {
 }
 
 
+.answer-choices {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 100px;
+  column-gap: 100px;
+  margin-top: 10rem;
+}
 
+.options {
+  border-radius: 10px;
+  font-size: 2rem;
+  background-color: #0074c2;
+  color: #fff; 
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  /* top: 90%;
+  left: 10%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%) */
+}
 
+.options:hover {
+  background-color: rgb(145, 0, 0);
+}
+
+.submit-answer, .close-question{ 
+  border-radius: 10px;
+  font-size: 1rem;
+  background-color: #0074c2;
+  color: #fff; 
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
 
 /*************************************************************************/
 /* This is the submit button DO NOT CHANGE */
