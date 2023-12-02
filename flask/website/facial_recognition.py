@@ -19,14 +19,20 @@ obama_face_encoding = face_recognition.face_encodings(obama_image)[0]
 biden_image = face_recognition.load_image_file(r"website\face_images\biden.jpg")
 biden_face_encoding = face_recognition.face_encodings(biden_image)[0]
 
+# Loading user image and encoding it. 
+user_image = face_recognition.load_image_file(r"website\face_images\surya.jpg")
+user_face_encoding = face_recognition.face_encodings(user_image)[0]
+
 # Create arrays of known face encodings and their names
 known_face_encodings = [
     obama_face_encoding,
-    biden_face_encoding
+    biden_face_encoding,
+    user_face_encoding
 ]
 known_face_names = [
     "Barack Obama",
-    "Joe Biden"
+    "Joe Biden",
+    "Surya"
 ]
 
 # Initialize some variables

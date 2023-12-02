@@ -3,9 +3,51 @@
 
 {% block contents %}
 
-<h1> This page is for facial recognition log in.</h1>
-<div class="video-cam">
-    <img src="{{url_for('face.video')}}" width="50%"/>
+<header>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <h2 class="csJeopardy">CS Jeopardy</h2>
+    <nav class="navigation">
+      {% if user.is_authenticated %}
+      <a id="home" href="/home">Home</a>
+      <a id="game" href="/jeopardy">Game</a>
+      <a id="logout" href="/logout">Logout</a>
+      {% else %}
+      <a href="#">About</a>
+      {% endif %}
+    </nav>
+</header>
+
+<div class="bg-wall">
+    <div class="cont-face">
+        <span class="border-line-face"></span>
+        <!--<h1> This page is for facial recognition log in.</h1>-->
+        <form method="POST">
+            <div class="form-face-box-login">
+                <h2 class="face-title">Facial Login</h2>
+                <div class="face-login-content">
+
+                    <div class="video-cam">
+                        <img src="{{url_for('face.video')}}" width="50%"/>
+                    </div>
+
+                    <div class="face-login-box">
+                        <i class="ri-user-3-line login-icon"></i>
+                        <div class="face-login-box-input">
+                            <input
+                                type="email"
+                                id="login-email"
+                                class="login-input"
+                                name="email"
+                                required
+                                placeholder=" "
+                            />
+                            <label for="face-login-email" class="face-login-label">Email</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    
 </div>
 
 {% endblock %}

@@ -488,6 +488,113 @@ input:-webkit-autofill:active {
 
 /*=============== END REGISTER STYLING ===============*/
 
+/*=============== FACIAL RECOGNITION STYLING ===============*/
+.cont-face {
+  position: relative;
+  width: 580px;
+  height: 620px;
+  background: #1c1c1c;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.cont-face::before {
+  content: '';
+  position: absolute;
+  top:-50%;
+  left: -50%;
+  width: 580px;
+  height: 620px;
+  background: linear-gradient(0deg,transparent,#45f3ff,#45f3ff,#45f3ff);
+  z-index: 1;
+  transform-origin: bottom right;
+  animation: animate 6s linear infinite;
+}
+
+.cont-face::after {
+  content: '';
+  position: absolute;
+  top:-50%;
+  left: -50%;
+  width: 580px;
+  height: 620px;
+  background: linear-gradient(0deg,transparent,#45f3ff,#45f3ff,#45f3ff);
+  z-index: 1;
+  transform-origin: bottom right;
+  animation: animate 6s linear infinite;
+  animation-delay: -3s;
+}
+
+.border-line-face {
+  position: absolute;
+  top: 0;
+  inset: 0;
+}
+
+.border-line-face::before {
+  content: '';
+  position: absolute;
+  top:-50%;
+  left: -50%;
+  width: 580px;
+  height: 620px;
+  background: linear-gradient(0deg,transparent,#ff2770,#ff2770,#ff2770);
+  z-index: 1;
+  transform-origin: bottom right;
+  animation: animate 6s linear infinite;
+  animation-delay: -1.5s;
+}
+
+.border-line-face::after {
+  content: '';
+  position: absolute;
+  top:-50%;
+  left: -50%;
+  width: 580px;
+  height: 620px;
+  background: linear-gradient(0deg,transparent,#ff2770,#ff2770,#ff2770);
+  z-index: 1;
+  transform-origin: bottom right;
+  animation: animate 6s linear infinite;
+  animation-delay: -4.5s;
+}
+
+@keyframes animate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.cont-face .login-face-box {
+  position: absolute;
+  inset: 3px;
+  background: #000000;
+  padding: 50px 40px;
+  border-radius: 8px;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(8px);
+  align-items: center;
+}
+
+.video-cam {
+  display: flex;
+  justify-content: center;
+}
+
+/*=============== END FACIAL RECOGNITION STYLING ===============*/
+
+.login-face-title {
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  color: #fff;
+}
 /*************************************************************************/
 /****************** Jeopardy HTML*********************/
 
