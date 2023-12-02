@@ -21,14 +21,9 @@ def create_app():
     db.init_app(app)
     
     # importing the blueprints 
-<<<<<<< HEAD:api/__init__.py
-    from views import views
-    from auth import auth
-=======
     from .views import views
     from .auth import auth
     from .facial_recognition import facial_recognition
->>>>>>> c2f99f67bac4cdfe5f187e52d127e317816995e7:flask/website/__init__.py
     # registering the blueprints
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
