@@ -10,10 +10,12 @@ from flask import Blueprint, render_template, request, flash, jsonify, redirect,
 from flask_login import login_required, current_user
 from .models import User, questions_answers
 from . import db
+from sqlalchemy import func
 import json
 import csv
 from .csv_parser import process_uploaded_csv
 import logging
+import random
 
 
 views = Blueprint('views', __name__) # defining blueprint
@@ -44,6 +46,7 @@ def question_options(category_id, point_value):
     if question_data:
         # Extract necessary information from the question data
         question_text = question_data.questionText
+        
         answer_choices = [question_data.answerText]  # Put the correct answer as the first choice
         # You may want to add more logic to get multiple answer choices from the database
 
@@ -63,11 +66,14 @@ def get_question(category, value):
 
         question_data = questions_answers.query.filter_by(category=category, difficulty=backend_difficulty).first()
         logging.info(f"Question Data: {question_data}")
-
+        option_a_data = questions_answers.query.filter_by(category=category, difficulty=backend_difficulty).order_by(func.random()).first()
+        option_b_data = questions_answers.query.filter_by(category=category, difficulty=backend_difficulty).order_by(func.random()).first()
+        option_c_data = questions_answers.query.filter_by(category=category, difficulty=backend_difficulty).order_by(func.random()).first()
         if question_data:
             # Extract necessary information from the question data
             question_text = question_data.questionText
-            answer_choices = [question_data.answerText]
+            
+            answer_choices = [question_data.answerText, option_a_data.answerText, option_b_data.answerText, option_c_data.answerText]
 
             # Log the retrieved question data
             logging.info(f"Retrieved question data - Category: {category}, Value: {value}")
