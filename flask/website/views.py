@@ -29,13 +29,23 @@ def home():
 @views.route('/jeopardy', methods=['GET', 'POST'])
 @login_required
 def jeopardy():
-    # Fetch categories from the database
-    categories = questions_answers.query.with_entities(questions_answers.category).distinct().limit(6).all()
-    category_names = [category[0] for category in categories]
+    try:
+        # Fetch categories from the database
+        categories = questions_answers.query.with_entities(questions_answers.category).distinct().limit(6).all()
+        category_names = [category[0] for category in categories]
 
-    # Fetch questions from the database
-    questions = questions_answers.query.all()
-    return render_template("gameboard.html", user=current_user, categories=category_names, questions=questions)
+        # Fetch questions from the database
+        questions = questions_answers.query.all()
+
+        # Check if there are categories and questions available
+        if not category_names or not questions:
+            raise Exception("No categories or questions found in the database.")
+
+        return render_template("gameboard.html", user=current_user, categories=category_names, questions=questions)
+    except Exception as e:
+        # Log the error and handle it gracefully
+        logging.error(f"Error in jeopardy route: {str(e)}")
+        return render_template("error.html", error_message="An error occurred while fetching data.")
 
 
 @views.route('/question/<int:category_id>/<int:point_value>/options')
@@ -65,30 +75,38 @@ def get_question(category, value):
         backend_difficulty = int(value) // 100  # Convert frontend level to backend level
 
         question_data = questions_answers.query.filter_by(category=category, difficulty=backend_difficulty).first()
-        logging.info(f"Question Data: {question_data}")
         option_a_data = questions_answers.query.filter_by(category=category, difficulty=backend_difficulty).order_by(func.random()).first()
         option_b_data = questions_answers.query.filter_by(category=category, difficulty=backend_difficulty).order_by(func.random()).first()
         option_c_data = questions_answers.query.filter_by(category=category, difficulty=backend_difficulty).order_by(func.random()).first()
+
         if question_data:
             # Extract necessary information from the question data
             question_text = question_data.questionText
-            
-            answer_choices = [question_data.answerText, option_a_data.answerText, option_b_data.answerText, option_c_data.answerText]
+            answer_text = question_data.answerText
+
+            # Shuffle answer choices including the correct answer
+            answer_choices = [answer_text, option_a_data.answerText, option_b_data.answerText, option_c_data.answerText]
+            random.shuffle(answer_choices)
 
             # Log the retrieved question data
             logging.info(f"Retrieved question data - Category: {category}, Value: {value}")
             logging.info(f"Question Text: {question_text}, Answer Choices: {answer_choices}")
 
             # Send the data as JSON
-            return {'question_text': question_text, 'answer_choices': answer_choices}
+            return {
+                'question_text': question_text,
+                'answer_choices': answer_choices,
+                'correct_answer': answer_text,  # Include correct answer for comparison
+            }
         else:
             # Handle the case where no question is found
             logging.warning(f"No question found for - Category: {category}, Value: {value}")
-            return jsonify({'question_text': "No question found", 'answer_choices': []})
+            return jsonify({'question_text': "No question found", 'answer_choices': [], 'correct_answer': None})
     except Exception as e:
         # Log any exceptions that occur
         logging.error(f"Error in get_question route: {str(e)}")
-        return jsonify({'question_text': "Error fetching question", 'answer_choices': []})
+        return jsonify({'question_text': "Error fetching question", 'answer_choices': [], 'correct_answer': None})
+
 
 
 @views.route('/upload', methods=['POST'])
