@@ -884,7 +884,28 @@ button:hover {
     }
   }
 /*************************************************************************/
-
+.timer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  width: 50%;
+  height: 60px; 
+}
+.timer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  width: 50%;
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff; 
+  background-color: #e74c3c; 
+  padding: 10px;
+  border-radius: 5px;
+}
 
 
 
