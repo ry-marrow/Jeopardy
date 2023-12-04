@@ -29,7 +29,7 @@ def create_app():
     app.register_blueprint(auth, url_prefix='/')
     app.register_blueprint(facial_recognition, url_prefix='/')
     
-    from models import User, questions_answers, game_data
+    from .models import User, questions_answers, game_data
     
     with app.app_context():
         db.create_all()
