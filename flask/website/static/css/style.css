@@ -777,6 +777,28 @@ button:hover {
   transition: background-color 0.3s;
 }
 
+.game-room-cont {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-room {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.game-title{
+  color: white;
+}
+.game-room-name {
+  color: white;
+}
+
+
 /*************************************************************************/
 /* This is the submit button DO NOT CHANGE */
 .submit-btn {
@@ -884,7 +906,7 @@ button:hover {
     }
   }
 /*************************************************************************/
-.timer-container {
+/* .timer-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -905,7 +927,7 @@ button:hover {
   background-color: #e74c3c; 
   padding: 10px;
   border-radius: 5px;
-}
+} */
 
 
 
