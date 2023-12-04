@@ -16,6 +16,7 @@ import csv
 from .csv_parser import process_uploaded_csv
 import logging
 import random
+from flask_mail import Mail, Message
 
 
 views = Blueprint('views', __name__) # defining blueprint
@@ -136,3 +137,23 @@ def upload_csv():
             flash('Failed to process the uploaded CSV file', category='error')
 
     return redirect(url_for('auth.admin_page'))
+
+
+mail = Mail()
+
+@views.route('/send_email')
+def send_email():
+    try:
+        subject = 'Hello from our flask app!'
+        body = 'Come check out the website and play some jeopardy!'
+        recipients = ['robscherer6@gmail.com', 'rtm5@hood.edu', 'sm70@hood.edu', 'xx1@hood.edu' ]
+
+        msg = Message(subject, recipients=recipients)
+        msg.body = body
+
+        mail.send(msg)
+        return 'Email sent!'
+    except Exception as e:
+        # Log the error or handle it in an appropriate way
+        logging.error(f"Error sending email: {str(e)}")
+        return 'Failed to send email.'
