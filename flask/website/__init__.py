@@ -40,10 +40,13 @@ def create_app():
     from .views import views
     from .auth import auth
     from .facial_recognition import facial_recognition
+    from .socket_server import socket_server
     # registering the blueprints
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
     app.register_blueprint(facial_recognition, url_prefix='/')
+    app.register_blueprint(socket_server, url_prefix='/')
+    
     
     from .models import User, questions_answers, game_data
     
