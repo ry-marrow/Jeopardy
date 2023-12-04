@@ -80,6 +80,7 @@ function selectAnswer(button, pointValue, correctAnswer) {
     const selectedAnswers = document.querySelectorAll('.answer-choices button.selected');
     
     console.log('answer selected!!!!!!', pointValue)
+    console.log('Correct Answer: ', correctAnswer)
     selectedAnswers.forEach(answer => answer.classList.remove('selected'));
 
     // Select the clicked answer
@@ -130,19 +131,22 @@ document.addEventListener('DOMContentLoaded', function () {
     const questionButtons = document.querySelectorAll('.question-button');
 
     function openQuestionPopup(category, value) {
-        console.log('value', value);
+        //console.log('value', value);
         fetch(`/get_question/${category}/${value}`)
             .then(response => response.json())
             .then(data => {
+                console.log('data', data);
+                
                 // Assuming your server sends the correct answer as part of the response
                 const correctAnswer = data.correct_answer;
+                console.log('correct answer: ', correctAnswer);
 
                 // Create an HTML document with the question and answer choices
                 const modalContent = `
                     <div class="question-container">
                         <div id="question-text" class="question-text">${data.question_text}</div>
                         <div id="answer-choices" class="answer-choices">
-                            ${data.answer_choices.map(choice => `<button class="options" data-point-value="${value}" onclick="selectAnswer(this, ${value})">${choice}</button>`).join('')}                        </div>
+                            ${data.answer_choices.map(choice => `<button class="options" data-point-value="${value}" onclick="selectAnswer(this, ${value}, '${correctAnswer}')">${choice}</button>`).join('')}                        </div>
                         <div class="timer-container">
                             <div id="timer" class="timer">15</div>
                         </div>
