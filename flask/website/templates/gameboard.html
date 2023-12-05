@@ -2,10 +2,10 @@
 %}
 <div class="gameboard">
   <nav class="game-nav">
-    <h1>Jeopardy</h1>
+    <h1>Jeopardy Room code: {{code}}</h1>
     <a id="home" href="/home">Back</a>
   </nav>
-
+  <div class="messages" id="messages"></div>
   <div class="categories">
     {% for category in categories %}
     <button class="category">{{ category }}</button>
@@ -64,6 +64,12 @@
 </div>
 
 <script>
+  var socketio = io()
+
+  const messages = document.getElementById("messages")
+
+  
+
   function fetchQuestion(category, value) {
     fetch(
       `/get_question/${encodeURIComponent(category)}/${parseInt(value, 10)}`
