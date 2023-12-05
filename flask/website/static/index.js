@@ -1,6 +1,6 @@
 // Define a variable to track the dollar total
 let dollarTotal = 0;
-
+var socketio = io()
 // Function to update the dollar total and display it
 function updateDollarTotal(amount, isIncrement = true) {
     console.log(Number(amount));
@@ -11,7 +11,6 @@ function updateDollarTotal(amount, isIncrement = true) {
         // Decrement the dollar total
         dollarTotal -= Number(amount);
     }
-
     // Update the displayed total in the HTML
     const totalDisplay = document.getElementById('dollar-total');
     totalDisplay.textContent = `${dollarTotal}`; // Update the content

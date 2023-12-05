@@ -27,86 +27,86 @@ views = Blueprint('views', __name__) # defining blueprint
 # def home():
 #     return render_template("home.html", user=current_user)
 
-@views.route('/jeopardy', methods=['GET', 'POST'])
-@login_required
-def jeopardy():
-    try:
-        # Fetch categories from the database
-        categories = questions_answers.query.with_entities(questions_answers.category).distinct().limit(6).all()
-        category_names = [category[0] for category in categories]
+# @views.route('/jeopardy', methods=['GET', 'POST'])
+# @login_required
+# def jeopardy():
+#     try:
+#         # Fetch categories from the database
+#         categories = questions_answers.query.with_entities(questions_answers.category).distinct().limit(6).all()
+#         category_names = [category[0] for category in categories]
 
-        # Fetch questions from the database
-        questions = questions_answers.query.all()
+#         # Fetch questions from the database
+#         questions = questions_answers.query.all()
 
-        # Check if there are categories and questions available
-        if not category_names or not questions:
-            raise Exception("No categories or questions found in the database.")
+#         # Check if there are categories and questions available
+#         if not category_names or not questions:
+#             raise Exception("No categories or questions found in the database.")
 
-        return render_template("gameboard.html", user=current_user, categories=category_names, questions=questions)
-    except Exception as e:
-        # Log the error and handle it gracefully
-        logging.error(f"Error in jeopardy route: {str(e)}")
-        return render_template("error.html", error_message="An error occurred while fetching data.")
+#         return render_template("gameboard.html", user=current_user, categories=category_names, questions=questions)
+#     except Exception as e:
+#         # Log the error and handle it gracefully
+#         logging.error(f"Error in jeopardy route: {str(e)}")
+#         return render_template("error.html", error_message="An error occurred while fetching data.")
 
 
-@views.route('/question/<int:category_id>/<int:point_value>/options')
-def question_options(category_id, point_value):
-    # Fetch the question data from the database based on category_id and point_value
-    question_data = questions_answers.query.filter_by(category=category_id, difficulty=point_value).first()
+# @views.route('/question/<int:category_id>/<int:point_value>/options')
+# def question_options(category_id, point_value):
+#     # Fetch the question data from the database based on category_id and point_value
+#     question_data = questions_answers.query.filter_by(category=category_id, difficulty=point_value).first()
 
-    if question_data:
-        # Extract necessary information from the question data
-        question_text = question_data.questionText
+#     if question_data:
+#         # Extract necessary information from the question data
+#         question_text = question_data.questionText
         
-        answer_choices = [question_data.answerText]  # Put the correct answer as the first choice
-        # You may want to add more logic to get multiple answer choices from the database
+#         answer_choices = [question_data.answerText]  # Put the correct answer as the first choice
+#         # You may want to add more logic to get multiple answer choices from the database
 
-        # Pass the data to the template
-        return render_template('question.html', question_text=question_text, answer_choices=answer_choices)
-    else:
-        # Handle the case where no question is found
-        return render_template('question.html', question_text="No question found", answer_choices=[])
+#         # Pass the data to the template
+#         return render_template('question.html', question_text=question_text, answer_choices=answer_choices)
+#     else:
+#         # Handle the case where no question is found
+#         return render_template('question.html', question_text="No question found", answer_choices=[])
 
-@views.route('/get_question/<category>/<int:value>', methods=['GET'])
-def get_question(category, value):
-    try:
-        logging.info(f"Received request for question - Category: {category}, Value: {value}")
+# @views.route('/get_question/<category>/<int:value>', methods=['GET'])
+# def get_question(category, value):
+#     try:
+#         logging.info(f"Received request for question - Category: {category}, Value: {value}")
 
-        # Assuming frontend difficulty levels are 100 to 500, and backend levels are 1 to 5
-        backend_difficulty = int(value) // 100  # Convert frontend level to backend level
+#         # Assuming frontend difficulty levels are 100 to 500, and backend levels are 1 to 5
+#         backend_difficulty = int(value) // 100  # Convert frontend level to backend level
 
-        question_data = questions_answers.query.filter_by(category=category, difficulty=backend_difficulty).first()
-        option_a_data = questions_answers.query.filter_by(category=category, difficulty=backend_difficulty).order_by(func.random()).first()
-        option_b_data = questions_answers.query.filter_by(category=category, difficulty=backend_difficulty).order_by(func.random()).first()
-        option_c_data = questions_answers.query.filter_by(category=category, difficulty=backend_difficulty).order_by(func.random()).first()
+#         question_data = questions_answers.query.filter_by(category=category, difficulty=backend_difficulty).first()
+#         option_a_data = questions_answers.query.filter_by(category=category, difficulty=backend_difficulty).order_by(func.random()).first()
+#         option_b_data = questions_answers.query.filter_by(category=category, difficulty=backend_difficulty).order_by(func.random()).first()
+#         option_c_data = questions_answers.query.filter_by(category=category, difficulty=backend_difficulty).order_by(func.random()).first()
 
-        if question_data:
-            # Extract necessary information from the question data
-            question_text = question_data.questionText
-            answer_text = question_data.answerText
+#         if question_data:
+#             # Extract necessary information from the question data
+#             question_text = question_data.questionText
+#             answer_text = question_data.answerText
 
-            # Shuffle answer choices including the correct answer
-            answer_choices = [answer_text, option_a_data.answerText, option_b_data.answerText, option_c_data.answerText]
-            random.shuffle(answer_choices)
+#             # Shuffle answer choices including the correct answer
+#             answer_choices = [answer_text, option_a_data.answerText, option_b_data.answerText, option_c_data.answerText]
+#             random.shuffle(answer_choices)
 
-            # Log the retrieved question data
-            logging.info(f"Retrieved question data - Category: {category}, Value: {value}")
-            logging.info(f"Question Text: {question_text}, Answer Choices: {answer_choices}")
+#             # Log the retrieved question data
+#             logging.info(f"Retrieved question data - Category: {category}, Value: {value}")
+#             logging.info(f"Question Text: {question_text}, Answer Choices: {answer_choices}")
 
-            # Send the data as JSON
-            return {
-                'question_text': question_text,
-                'answer_choices': answer_choices,
-                'correct_answer': answer_text,  # Include correct answer for comparison
-            }
-        else:
-            # Handle the case where no question is found
-            logging.warning(f"No question found for - Category: {category}, Value: {value}")
-            return jsonify({'question_text': "No question found", 'answer_choices': [], 'correct_answer': None})
-    except Exception as e:
-        # Log any exceptions that occur
-        logging.error(f"Error in get_question route: {str(e)}")
-        return jsonify({'question_text': "Error fetching question", 'answer_choices': [], 'correct_answer': None})
+#             # Send the data as JSON
+#             return {
+#                 'question_text': question_text,
+#                 'answer_choices': answer_choices,
+#                 'correct_answer': answer_text,  # Include correct answer for comparison
+#             }
+#         else:
+#             # Handle the case where no question is found
+#             logging.warning(f"No question found for - Category: {category}, Value: {value}")
+#             return jsonify({'question_text': "No question found", 'answer_choices': [], 'correct_answer': None})
+#     except Exception as e:
+#         # Log any exceptions that occur
+#         logging.error(f"Error in get_question route: {str(e)}")
+#         return jsonify({'question_text': "Error fetching question", 'answer_choices': [], 'correct_answer': None})
 
 
 

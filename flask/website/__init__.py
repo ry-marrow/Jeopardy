@@ -8,12 +8,13 @@ from flask_login import LoginManager  # will help manage all the loggin in relat
 from flask_migrate import Migrate
 import logging
 from flask_mail import Mail
+from flask_socketio import SocketIO
 
 # creating the database:
 db = SQLAlchemy()
 DB_NAME = "database.db"
 
-
+socketio = SocketIO()
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = '6LetRNQoAAAAALJACuSqiZF5XmUBHnenNtyc8O9-' # When in production you would not want to share this with anyone
@@ -29,8 +30,7 @@ def create_app():
     app.config['MAIL_DEFAULT_SENDER'] = 'robscherer6@gmail.com'  # default sender email
 
     mail = Mail(app)
-    socketio = SocketIO(app)
-
+    socketio.init_app(app)
     app.logger.setLevel(logging.INFO)
 
     # initializing the database by giving it out flask apps
