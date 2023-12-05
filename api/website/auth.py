@@ -4,12 +4,12 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
 import requests
-# import cv2
-# import numpy as np
+import cv2
+import numpy as np
 
 
 auth = Blueprint('auth', __name__)
-#camera = cv2.VideoCapture(0)
+camera = cv2.VideoCapture(0)
 
 RECAPTCHA_SECRET_KEY = "6LfaRiQpAAAAAB4wDip7CAno-8UaQXyByAu-0sNx"
 
