@@ -11,7 +11,7 @@ import numpy as np
 auth = Blueprint('auth', __name__)
 camera = cv2.VideoCapture(0)
 
-RECAPTCHA_SECRET_KEY = "6LfaRiQpAAAAAB4wDip7CAno-8UaQXyByAu-0sNx"
+RECAPTCHA_SECRET_KEY = "6LepNSgpAAAAAD4u_fvxPnXowdHAchcSa0l0YU_Z"
 
 @auth.route('/', methods=['GET', 'POST'])
 def login():
