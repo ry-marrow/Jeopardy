@@ -1,5 +1,5 @@
 from flask import Flask,render_template, request, session, redirect
-from flask import _request_ctx_stack
+from flask import _app_ctx_stack
 from flask_socketio import SocketIO, send, join_room, leave_room
 import random
 from string import ascii_uppercase
