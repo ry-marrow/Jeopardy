@@ -1,0 +1,13 @@
+{% extends "base.html" %} {% block title %}Admin{% endblock %} {% block contents
+%}
+<head>
+  <title>Admin Page</title>
+</head>
+<body>
+  <h1>Admin Page</h1>
+  <form method="POST" action="/upload" enctype="multipart/form-data">
+    <input type="file" name="csvFile" accept=".csv" />
+    <button type="submit">Upload CSV</button>
+  </form>
+</body>
+{% endblock %}

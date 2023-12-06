@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Game{% endblock %}
+
+{% block contents %}
+
+<div class="gameboard">
+    <nav class="game-nav">
+        <h1>Computer Science Jeopardy</h1>
+        <a id="home" href="/home">Back</a>
+    </nav> 
+    <div class="question-table">
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <button>4</button>
+        <button>5</button>
+        <button>6</button>
+        <button>7</button>
+        <button>8</button>
+        <button>9</button>
+        <button>10</button>
+        <button>11</button>
+        <button>12</button>
+        <button>13</button>
+        <button>14</button>
+        <button>15</button>
+        <button>16</button>
+        <button>17</button>
+        <button>18</button>
+        <button>19</button>
+        <button>20</button>
+        <button>21</button>
+        <button>22</button>
+        <button>23</button>
+        <button>24</button>
+        <button>25</button>
+        <button>26</button>
+        <button>27</button>
+        <button>28</button>
+        <button>29</button>
+        <button>30</button>
+        <button>31</button>
+        <button>32</button>
+        <button>33</button>
+        <button>34</button>
+        <button>35</button>
+        <button>36</button>
+    </div>  
+        
+    <h5>Player 1</h5>
+    <div id="total-display">
+        Total: $<span id="dollar-total">0</span>
+    </div>
+
+
+    <!-- Question Popup -->
+    <div id="question-popup" class="question-popup">
+        <iframe id="question-iframe" src="" frameborder="0"></iframe>
+    </div>
+</div>
+
+<!--<script src="{{ url_for('static', filename='index.js') }}"></script>-->
+
+{% endblock %}
