@@ -1,4 +1,5 @@
 from flask import Flask,render_template, request, session, redirect
+from flask import _request_ctx_stack
 from flask_socketio import SocketIO, send, join_room, leave_room
 import random
 from string import ascii_uppercase
@@ -8,7 +9,7 @@ from flask_login import LoginManager  # will help manage all the loggin in relat
 from flask_migrate import Migrate
 import logging
 from flask_mail import Mail
-from flask_socketio import SocketIO
+# from flask_socketio import SocketIO
 
 # creating the database:
 db = SQLAlchemy()
