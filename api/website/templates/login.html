@@ -1,118 +1,126 @@
 {% extends "base.html" %} {% block title %}Login{% endblock %} {% block contents
-%}
-<header>
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  <h2 class="csJeopardy">CS Jeopardy</h2>
-  <nav class="navigation">
-    {% if user.is_authenticated %}
-    <a id="home" href="/home">Home</a>
-    <a id="game" href="/jeopardy">Game</a>
-    <a id="logout" href="/logout">Logout</a>
-    {% else %}
-    <a href="#">About</a>
+  %}
+  <header>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <h2 class="csJeopardy">CS Jeopardy</h2>
+    <nav class="navigation">
+      {% if user.is_authenticated %}
+      <a id="home" href="/home">Home</a>
+      <a id="game" href="/jeopardy">Game</a>
+      <a id="logout" href="/logout">Logout</a>
+      {% else %}
+      <a href="#">About</a>
+      {% endif %}
+    </nav>
+  </header>
+  
+  {% with messages = get_flashed_messages(with_categories=true)%} 
+  {% if messages%} 
+    {% for category, message in messages %} 
+    {% if category == 'error' %}
+    <div class="alert alert-error">
+      {{message}}
+      <!-- <span class="close-btn" onclick="closeAlert()"></span> -->
+      <button class="close-btn" onclick="closeAlert()">&times;</button>
+    </div>
+  
+   {% else %}
+   <!--
+    <div class="alert alert-success">
+      {{message}}
+      <button type="button" data-dismiss="alert" class="close">
+      <span>&times;</span>
+      </button>
+    </div>-->
+  
     {% endif %}
-  </nav>
-</header>
-
-{% with messages = get_flashed_messages(with_categories=true)%} 
-{% if messages%} 
-  {% for category, message in messages %} 
-  {% if category == 'error' %}
-  <div class="alert alert-error">
-    {{message}}
-    <!-- <span class="close-btn" onclick="closeAlert()"></span> -->
-    <button class="close-btn" onclick="closeAlert()">&times;</button>
-  </div>
-
- {% else %}
- <!--
-  <div class="alert alert-success">
-    {{message}}
-    <button type="button" data-dismiss="alert" class="close">
-    <span>&times;</span>
-    </button>
-  </div>-->
-
-  {% endif %}
-  {% endfor %} 
-{% endif %} 
-{% endwith %}
-
-<div class="bg-wall">
-  <div class="cont">
-    <span class="border-line"></span>
-    <form method="POST">
-      <div class="form-box-login">
-        <h2 class="login-title">Login</h2>
-
-        <div class="login-content">
-          <div class="login-box">
-            <i class="ri-user-3-line login-icon"></i>
-
-            <div class="login-box-input">
-              <!--<span class="icon"><ion-icon name="mail"></ion-icon></span>-->
-              <input
-                type="email"
-                id="login-email"
-                class="login-input"
-                name="email"
-                required
-                placeholder=" "
-              />
-              <label for="login-email" class="login-label">Email</label>
+    {% endfor %} 
+  {% endif %} 
+  {% endwith %}
+  
+  <div class="bg-wall">
+    <div class="cont">
+      <span class="border-line"></span>
+      <form method="POST">
+        <div class="form-box-login">
+          <h2 class="login-title">Login</h2>
+  
+          <div class="login-content">
+            <div class="login-box">
+              <i class="ri-user-3-line login-icon"></i>
+  
+              <div class="login-box-input">
+                <!--<span class="icon"><ion-icon name="mail"></ion-icon></span>-->
+                <input
+                  type="email"
+                  id="login-email"
+                  class="login-input"
+                  name="email"
+                  required
+                  placeholder=" "
+                />
+                <label for="login-email" class="login-label">Email</label>
+              </div>
+            </div>
+  
+            <div class="login-box">
+              <i class="ri-lock-2-line login-icon"></i>
+  
+              <div class="login-box-input">
+                <!--<span class="icon"><ion-icon name="lock-closed"></ion-icon></span>-->
+                <input
+                  type="password"
+                  id="login-pass"
+                  class="login-input"
+                  name="password"
+                  required
+                  placeholder=" "
+                />
+                <label for="login-pass" class="login-label">Password</label>
+                <i class="ri-eye-off-line login-eye" id="login-eye"></i>
+              </div>
             </div>
           </div>
-
-          <div class="login-box">
-            <i class="ri-lock-2-line login-icon"></i>
-
-            <div class="login-box-input">
-              <!--<span class="icon"><ion-icon name="lock-closed"></ion-icon></span>-->
-              <input
-                type="password"
-                id="login-pass"
-                class="login-input"
-                name="password"
-                required
-                placeholder=" "
-              />
-              <label for="login-pass" class="login-label">Password</label>
-              <i class="ri-eye-off-line login-eye" id="login-eye"></i>
+          <!-- I have to change the code below so that they can login through faceid-->
+          <!--
+          <div class="login-check">
+            <div class="login-check-group">
+              <input type="checkbox" class="login-check-input" id="login-check" />
+              <label for="login-check" class="login-check-label"
+                >Remember me</label
+              >
             </div>
+  
+            <a href="#" class="login-forgot">Forgot Password?</a>
+          </div>-->
+          <div class="login-face">
+            <div class="login-face-group">
+              <a href="/faceid">Face login</a>
+            </div>
+            <a href="#" class="login-forgot">Forgot Password?</a>
           </div>
+  
+          
+          <div
+            class="g-recaptcha"
+            data-sitekey="6LeNFdUoAAAAAMP0p1WCGhDF6WPC1dXJnJXjRiPB"
+          ></div>
+  
+          <button type="submit" class="submit-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Login
+          </button>
+  
+          <p class="login-register">
+            Don't have an account?
+            <a href="/sign-up" class="register-link">Register now!</a>
+          </p>
         </div>
-
-        <div class="login-check">
-          <div class="login-check-group">
-            <input type="checkbox" class="login-check-input" id="login-check" />
-            <label for="login-check" class="login-check-label"
-              >Remember me</label
-            >
-          </div>
-
-          <a href="#" class="login-forgot">Forgot Password?</a>
-        </div>
-
-        <div
-          class="g-recaptcha"
-          data-sitekey="6LfaRiQpAAAAAHAOJt6QN6l_2E2DbYwIkTKqn_UZ"
-        ></div>
-
-        <button type="submit" class="submit-btn">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          Login
-        </button>
-
-        <p class="login-register">
-          Don't have an account?
-          <a href="/sign-up" class="register-link">Register now!</a>
-        </p>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
-</div>
-
-{% endblock %}
+  
+  {% endblock %}

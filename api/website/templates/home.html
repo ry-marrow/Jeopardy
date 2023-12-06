@@ -17,16 +17,57 @@
     </nav> 
 </header>
 <div class="bg-wall">
-    <!-- <h1 align="center"> CS Jeopardy </h1>
-    <h2 align="center">NEED TO MAKE THIS INTO THE DASHBOARD </h2> -->
+  <!--
+    This code is where the user is able to upload there custom questions. 
+
+    <h1 align="center"> CS Jeopardy </h1>
+    <h2 align="center">NEED TO MAKE THIS INTO THE DASHBOARD </h2> 
     <h1 class="admin-page">Admin Page</h1>
     <form method="POST" action="/upload" enctype="multipart/form-data">
       <input type="file" class="upload" name="csvFile" accept=".csv" />
       <button type="submit">Upload CSV</button>
+    </form> 
+
+  -->
+
+  <div class="game-room-cont">
+    <form method="POST" class="game-room">
+      <h3 class="game-title">Enter the game room</h3>
+
+
+      <div class="game-room-name">
+        <label>Name: </label>
+        <input type="text" placeholder="Pick a game name" name="name" value="{{name}}"/>
+      </div>
+
+
+      <div class="game-room-join">
+        <input type="text" placeholder= "Enter the room code" name="code" id="code" value="{{code}}"/>
+        <button type="submit" class="submit-btn" name="join">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          Join a game room
+        </button>
+      </div>
+
+      <button type="submit" class="submit-btn" name="create" >
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Create a Room
+      </button>
+
+      <!-- The code below displays the errors -->
+      {% if error %}
+      <ul>
+        <li>{{error}}</li>
+      </ul>
+      {% endif %}
+
     </form>
+  </div>
 </div>
 {% endblock %}
-
-
-
-
